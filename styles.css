@@ -1,0 +1,263 @@
+/* GLOBAL STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f6f6f6;
+  color: #333;
+}
+
+/* HEADER */
+header {
+  background-color: #fff;
+  height: 60px;
+  padding: 0 20px;
+  border-bottom: 3px solid #4f46e5;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .left {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #4f46e5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+header .right button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+header .right button:first-child {
+  background-color: transparent;
+  color: #4f46e5;
+}
+
+header .right button:last-child {
+  background-color: #4f46e5;
+  color: white;
+}
+
+header .right button:last-child:hover {
+  background-color: #facc15;
+  color: black;
+}
+
+/* MAIN SECTION */
+main {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* CATEGORY SECTION */
+.category-container {
+  border: 2px solid #d1d5db;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: white;
+  height: 350px;
+  overflow-y: auto;
+}
+
+.category-container > p {
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.category-container > p:hover {
+  background-color: #eef2ff;
+  color: #4f46e5;
+  transform: translateX(5px);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* SUPPORT SECTION */
+.ukraine {
+  background: linear-gradient(to bottom left, #4f46e5, #a5b4fc);
+  border-radius: 16px;
+  color: white;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.ukraine h1 {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ukraine ul {
+  overflow-y: auto;
+  max-height: 350px;
+  margin-top: 10px;
+}
+
+.ukraine ul::-webkit-scrollbar {
+  display: none;
+}
+
+.ukraine li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ukraine img {
+  width: 60px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* BOOKS SECTION */
+.books-container {
+  border: 2px solid #d1d5db;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Book segment */
+.parent-div {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.parent-div h2 {
+  font-size: 1.4rem;
+  color: #4f46e5;
+  margin-bottom: 8px;
+}
+
+.inner-books-div {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.inner-books-div::-webkit-scrollbar {
+  height: 6px;
+}
+
+.inner-books-div::-webkit-scrollbar-thumb {
+  background: #a5b4fc;
+  border-radius: 10px;
+}
+
+/* Single Book Card */
+.book-div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 140px;
+  padding: 10px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.book-div img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.book-div p {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.book-div p:last-child {
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Hover Effects */
+.book-div:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Show More Button */
+.show-more {
+  padding: 8px 16px;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  align-self: flex-end;
+  transition: background 0.3s ease;
+}
+
+.show-more:hover {
+  background-color: #facc15;
+  color: black;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+
+  .left {
+    width: 100%;
+  }
+
+  .books-container {
+    width: 100%;
+  }
+
+  .inner-books-div {
+    overflow-x: scroll;
+  }
+}
+
+@media (max-width: 500px) {
+  header .left {
+    font-size: 1.2rem;
+  }
+
+  header .right button {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+
+  .ukraine h1 {
+    font-size: 1.2rem;
+  }
+
+  .book-div {
+    width: 120px;
+  }
+
+  .book-div img {
+    height: 180px;
+  }
+}
