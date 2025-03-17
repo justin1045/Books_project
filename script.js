@@ -3,31 +3,47 @@ const CATEGORY_API = "https://books-backend.p.goit.global/books/category-list";
 const TOPBOOKS_API = "https://books-backend.p.goit.global/books/top-books";
 
 const categoryContainer = document.querySelector(".category-container");
-const allCategories = document.querySelector("#all_categories");
+const allCategories = document.querySelector("#all-categories");
 const booksContainer = document.querySelector(".books-container");
+let books = [];
 
-getCatagories(CATEGORY_API);
+//! calling function to fetch and show categories
+getCategories(CATEGORY_API);
+
 getAllBooks(TOPBOOKS_API);
 
+// * GET DATA FUNCTION
+async function getData(url) {
+  const response = await fetch(url);
+  const result = await response.json();
+  return result;
+}
+
+// * GET CATEGORIES FUNCTION
+async function getCategories(url = CATEGORY_API) {
+  const data = await getData(url);
+  // console.log(data);
+  // display categories from fetched data
+  displayCategories(data);
+}
+
+// * DISPLAY CATEGORY FUNCTION
 function displayCategories(arr) {
   const fragment = document.createDocumentFragment();
+
   arr.forEach((obj) => {
     const category = document.createElement("p");
     category.innerText = obj.list_name;
 
-    // add event listner for category search
-    category.addEventListener("click" , (e) => {
-
-        booksContainer.innerHTML = "";
-
-       let categoryBooks = books.find((obj) => {
-            return e.target.innerText == obj.list_name;
-            
-        });
-        // console.log(obj.list_name);
-        // console.log(categoryBooks);
-        displayBooks(categoryBooks.books);
-
+    // add event on each category, when click matching books shal be visible
+    category.addEventListener("click", (e) => {
+      // finding the matching object with mathcing category
+      booksContainer.innerHTML = ""; // make container blank only when a category is clicked
+      let categoryBooksObject = books.find((obj) => {
+        return e.target.innerText === obj.list_name;
+      });
+      // console.log(categoryBooksObject);
+      displayBooks(categoryBooksObject.books);
     });
 
     fragment.append(category);
@@ -35,23 +51,10 @@ function displayCategories(arr) {
   categoryContainer.append(fragment);
 }
 
-
-async function getData(url) {
-
-  let response = await fetch(url);
-  let result = await response.json();
-  return result;
-
-}
-
-async function getCatagories(url) {
-  let data = await getData(url);
-  displayCategories(data);
-}
-
-allCategories.addEventListener("click" , (e) => {
-    booksContainer.innerHTML = "";
-    getAllBooks(TOPBOOKS_API);
+// add event on all categories manually
+allCategories.addEventListener("click", ()=> {
+  booksContainer.innerHTML = ""; // make container blank only when all category is clicked
+  getAllBooks(TOPBOOKS_API)
 });
 
 // * GET ALL BOOKS FUNCTION
@@ -69,19 +72,18 @@ async function getAllBooks(url) {
 
 // * DISPLAY BOOKS FUNCTION
 function displayBooks(arr) {
-    // booksContainer.innerHTML = "";
   const parentDiv = document.createElement("div"); // outermost div for each segment
-  parentDiv.classList.add("parent-div")
+  parentDiv.classList.add("parent-div");
   const fragment = document.createDocumentFragment();
 
-// heading same he to kahi se bhi laga dia
+  // heading same he to kahi se bhi laga dia
   const heading = document.createElement("h2");
   heading.innerText = arr[0].list_name;
   parentDiv.append(heading);
 
   const innerBooksDiv = document.createElement("div"); // container to wrap books div
   innerBooksDiv.classList.add("inner-books-div");
-// har obj se book banake append kia
+  // har obj se book banake append kia
   arr.forEach((obj) => {
     const bookDiv = document.createElement("div");
     bookDiv.classList.add("book-div");
@@ -96,7 +98,7 @@ function displayBooks(arr) {
     author.innerText = obj.author;
 
     bookDiv.append(image, title, author);
-    innerBooksDiv.append(bookDiv)
+    innerBooksDiv.append(bookDiv);
     // fragment.append(bookDiv);
   });
   parentDiv.append(innerBooksDiv);
@@ -104,6 +106,7 @@ function displayBooks(arr) {
   const showMoreButton = document.createElement("button");
   showMoreButton.innerText = "Show More";
   showMoreButton.classList.add("show-more");
+
 
   parentDiv.append(showMoreButton);
   booksContainer.append(parentDiv);

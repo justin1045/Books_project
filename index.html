@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Books Site</title>
     <!-- font awsome cdn -->
     <link
       rel="stylesheet"
@@ -25,19 +25,138 @@
       <!-- left -->
       <div class="left">
         <i class="fa-solid fa-book"></i>
-        BOOK
+        <span>BOOK</span>
       </div>
       <!-- right -->
-      <div class="right flex gap-4">
-        <button>mode</button>
+      <div class="right flex justify-center items-center gap-4">
+        <div id="mode" class="bg-purple-600 w-[4rem] h-[1.3rem] px-0.5 rounded-xl flex items-center">
+          <div id="round" class="w-[1.2rem] h-[1.2rem] rounded-[50%] bg-white"></div>
+        </div>
         <button
           class="bg-blue-500 px-4 py-2 rounded-xl text-white hover:bg-yellow-400 hover:text-black"
+          id="sign-up-button"
         >
           Sign Up
           <i class="fa-solid fa-arrow-right"></i>
         </button>
       </div>
     </header>
+
+    <!--! Sign UP -->
+    <div
+      id="sign-up-screen"
+      class="w-full h-[100vh] fixed bg-purple-700 py-12 font-semibold"
+    >
+      <!-- parent -->
+      <div
+        class="box bg-amber-200 w-1/2 h-[400px] p-4 m-auto border-2 border-black rounded-lg flex flex-col justify-between items-center"
+      >
+        <!-- cross -->
+        <div class="w-full flex justify-end text-end">
+          <i class="cross fa-solid fa-xmark text-xl"></i>
+        </div>
+
+        <!-- form -->
+        <form action="" id="sign-up-form" class="w-full flex flex-col gap-6">
+          <div
+            class="h-12 w-full bg-white border-2 border-black rounded-3xl flex justify-center items-center"
+          >
+            <input
+              type="text"
+              required
+              placeholder="Name"
+              class="sign-up-input h-full w-full px-4 rounded-3xl"
+            />
+          </div>
+
+          <div
+            class="h-12 w-full bg-white border-2 border-black rounded-3xl flex justify-center items-center"
+          >
+            <input
+              type="email"
+              required
+              placeholder="E-mail"
+              class="sign-up-input h-full w-full px-4 rounded-3xl"
+            />
+          </div>
+
+          <div
+            class="h-12 w-full bg-white border-2 border-black rounded-3xl flex justify-center items-center"
+          >
+            <input
+              type="password"
+              required
+              minlength="6"
+              placeholder="Password"
+              class="sign-up-input h-full w-full px-4 rounded-3xl"
+            />
+          </div>
+
+          <input
+            type="submit"
+            value="Sign Up"
+            class="h-12 w-full bg-black text-white font-semibold rounded-3xl cursor-pointer transition-all duration-300 ease-in-out hover:bg-gray-800 hover:scale-105"
+          />
+        </form>
+        <!-- links -->
+        <div class="flex gap-4">
+          <span
+            id="sign-in-link"
+            class="underline cursor-pointer pb-2 text-blue-500 hover:text-gray-500"
+            >Sign In</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!--! Sign In -->
+    <div
+      id="sign-in-screen"
+      class="w-full h-[100vh] fixed bg-purple-700 py-12 font-semibold"
+    >
+      <!-- parent -->
+      <div
+        class="box bg-amber-200 w-1/2 h-[400px] p-4 m-auto border-2 border-black rounded-lg flex flex-col justify-between items-center"
+      >
+        <!-- cross -->
+        <div class="w-full flex justify-end text-end">
+          <i class="cross fa-solid fa-xmark text-xl"></i>
+        </div>
+
+        <!-- form -->
+        <form action="" id="sign-in-form" class="w-full flex flex-col gap-6">
+          <div
+            class="h-12 w-full bg-white border-2 border-black rounded-3xl flex justify-center items-center"
+          >
+            <input
+              type="text"
+              required
+              placeholder="E-mail"
+              class="sign-in-input h-full w-full px-4 rounded-3xl"
+            />
+          </div>
+
+          <div
+            class="h-12 w-full bg-white border-2 border-black rounded-3xl flex justify-center items-center"
+          >
+            <input
+              type="password"
+              required
+              minlength="6"
+              placeholder="Password"
+              class="sign-in-input h-full w-full px-4 rounded-3xl"
+            />
+          </div>
+
+          <input
+            type="submit"
+            value="Sign In"
+            class="h-12 w-full bg-black text-white font-semibold rounded-3xl cursor-pointer transition-all duration-300 ease-in-out hover:bg-gray-800 hover:scale-105"
+          />
+        </form>
+       
+      </div>
+    </div>
 
     <!--! main  -->
     <main class="py-12 px-6 flex gap-2">
@@ -46,7 +165,7 @@
         <div
           class="category-container border-1 text-[14px] w-full h-[350px] font-semibold flex flex-col gap-5 overflow-x-hidden overflow-scroll"
         >
-          <p class="text-indigo-500" id="all_categories">All Categories</p>
+          <p class="text-indigo-500" id="all-categories">All Categories</p>
         </div>
         <!-- ukraine -->
         <div
@@ -77,5 +196,8 @@
     </main>
 
     <script src="script.js"></script>
+    <script src="form.js" type="module"></script>
+    <script src="utility.js" type="module"></script>
   </body>
 </html>
+<!-- npx @tailwindcss/cli -i ./input.css -o ./output.css --watch -->
